@@ -6,3 +6,4 @@ rm -rf $CACHEDIR
 mkdir $CACHEDIR
 
 git clone https://github.com/kimwalisch/primesieve.git $CACHEDIR/primesieve
+git clone https://github.com/kimwalisch/primecount.git $CACHEDIR/primecount

@@ -2,12 +2,12 @@
 
 set -e
 
-VERSION=5.4.2
+VERSION=2.1
 TARGET=x86_64-w64-mingw32
 
-BUILDDIR=src/primesieve/$VERSION/$TARGET
+BUILDDIR=src/primecount/$VERSION/$TARGET
 INSTALLDIR=$PWD/local/
-OUTPUTDIR=lib/primesieve/$VERSION/$TARGET
+OUTPUTDIR=lib/primecount/$VERSION/$TARGET
 
 rm -rf $BUILDDIR
 rm -rf $OUTPUTDIR
@@ -16,12 +16,12 @@ mkdir -p $BUILDDIR
 mkdir -p $INSTALLDIR
 mkdir -p $OUTPUTDIR
 
-git clone cache/primesieve $BUILDDIR
+git clone cache/primecount $BUILDDIR
 git -C $BUILDDIR checkout v$VERSION
 
 pushd $BUILDDIR
 ./autogen.sh --host=$TARGET
-./configure --host=$TARGET --prefix=$INSTALLDIR
+CPPFLAGS="-I../../../../local/include/" LDFLAGS="-L../../../../local/lib/" ./configure --host=$TARGET --prefix=$INSTALLDIR
 make
 make install
 popd
@@ -30,5 +30,6 @@ cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libstdc++-6.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
+cp $INSTALLDIR/bin/libprimecount-1.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/libprimesieve-4.dll $OUTPUTDIR
-cp $INSTALLDIR/bin/primesieve.exe $OUTPUTDIR
+cp $INSTALLDIR/bin/primecount.exe $OUTPUTDIR

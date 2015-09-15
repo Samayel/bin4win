@@ -3,3 +3,4 @@
 CACHEDIR=cache
 
 git -C $CACHEDIR/primesieve pull
+git -C $CACHEDIR/primecount pull
