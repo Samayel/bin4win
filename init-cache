@@ -1,5 +1,8 @@
 #!/bin/bash
 
-cd cache
+CACHEDIR=cache
 
-git clone https://github.com/kimwalisch/primesieve.git
+rm -rf $CACHEDIR
+mkdir $CACHEDIR
+
+git clone https://github.com/kimwalisch/primesieve.git $CACHEDIR/primesieve

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd cache
+CACHEDIR=cache
 
-git -C primesieve pull
+git -C $CACHEDIR/primesieve pull
