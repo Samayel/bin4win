@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd cache
+
+git -C primesieve pull

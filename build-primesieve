@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+VERSION=5.4.2
+TARGET=x86_64-w64-mingw32
+
+BUILDDIR=src/primesieve/$VERSION/$TARGET
+OUTPUTDIR=lib/primesieve/$VERSION/$TARGET
+
+rm -rf $BUILDDIR
+rm -rf $OUTPUTDIR
+
+mkdir -p $BUILDDIR
+mkdir -p $OUTPUTDIR
+
+git clone cache/primesieve $BUILDDIR
+git -C $BUILDDIR checkout v$VERSION
+
+pushd $BUILDDIR
+./autogen.sh --host=$TARGET
+CXXFLAGS="-static -static-libgcc -static-libstdc++" ./configure --host=$TARGET
+#./configure --host=$TARGET
+make
+popd
+
+cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
+cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR
+cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
+cp $BUILDDIR/primesieve.exe $OUTPUTDIR
+
+
+
+rm -rf /media/sf_Shared/*
+cp -r lib /media/sf_Shared

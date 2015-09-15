@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd cache
+
+git clone https://github.com/kimwalisch/primesieve.git
