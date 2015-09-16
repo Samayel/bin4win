@@ -18,9 +18,11 @@ mkdir -p $OUTPUTDIR
 
 git clone cache/msieve-shared $BUILDDIR
 git -C $BUILDDIR checkout v$VERSION
+cp patch/msieve-shared/$VERSION/$TARGET/Makefile $BUILDDIR
 cp cache/PrimeSieve.jl/deps/src/localmsieve/msieveshared.c $BUILDDIR
 
 pushd $BUILDDIR
-# TODO: enforce TARGET
-CFLAGS="-I../../../../local/include/" LDFLAGS="-L../../../../local/lib/" make ECM=1 NO_ZLIB=1 msieveshared
+make ECM=1 NO_ZLIB=1 msieveshared
 popd
+
+cp $BUILDDIR/libsmsieve.dll $OUTPUTDIR
