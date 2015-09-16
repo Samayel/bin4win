@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+VERSION=master
+TARGET=x86_64-w64-mingw32
+
+BUILDDIR=src/cprimecount/$VERSION/$TARGET
+INSTALLDIR=$PWD/local
+OUTPUTDIR=lib/cprimecount/$VERSION/$TARGET
+
+rm -rf $BUILDDIR
+rm -rf $OUTPUTDIR
+
+mkdir -p $BUILDDIR
+mkdir -p $INSTALLDIR
+mkdir -p $OUTPUTDIR
+
+cp -r cache/PrimeSieve.jl/deps/src/cprimecount/* $BUILDDIR
+
+pushd $BUILDDIR
+$TARGET-g++ -Wall -c -O2 -DDLL_BUILD=1 cprimecount.cpp -I$INSTALLDIR/include
+# linking to primesieve not neccessary unless we want functions from primesieve.
+$TARGET-g++ -Wall -mwindows -shared cprimecount.o -o libcprimecount.dll -lstdc++ -L$INSTALLDIR/lib/ -lprimecount -lprimesieve
+popd
+
+cp $BUILDDIR/libcprimecount.dll $OUTPUTDIR

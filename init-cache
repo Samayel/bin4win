@@ -5,5 +5,11 @@ CACHEDIR=cache
 rm -rf $CACHEDIR
 mkdir $CACHEDIR
 
+wget -O $CACHEDIR/gmp-6.0.0.tar.bz2   https://gmplib.org/download/gmp/gmp-6.0.0.tar.bz2
+wget -O $CACHEDIR/ecm-6.4.4.tar.gz    https://gforge.inria.fr/frs/download.php/file/32159/ecm-6.4.4.tar.gz
+
+git clone https://github.com/jlapeyre/msieve-shared.git $CACHEDIR/msieve-shared
+git clone https://github.com/Samayel/PrimeSieve.jl.git $CACHEDIR/PrimeSieve.jl
+
 git clone https://github.com/kimwalisch/primesieve.git $CACHEDIR/primesieve
 git clone https://github.com/kimwalisch/primecount.git $CACHEDIR/primecount

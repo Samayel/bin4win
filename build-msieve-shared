@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+VERSION=0.0.3
+TARGET=x86_64-w64-mingw32
+
+BUILDDIR=src/msieve-shared/$VERSION/$TARGET
+INSTALLDIR=$PWD/local
+OUTPUTDIR=lib/msieve-shared/$VERSION/$TARGET
+
+rm -rf $BUILDDIR
+rm -rf $OUTPUTDIR
+
+mkdir -p $BUILDDIR
+mkdir -p $INSTALLDIR
+mkdir -p $OUTPUTDIR
+
+git clone cache/msieve-shared $BUILDDIR
+git -C $BUILDDIR checkout v$VERSION
+cp cache/PrimeSieve.jl/deps/src/localmsieve/msieveshared.c $BUILDDIR
+
+pushd $BUILDDIR
+# TODO: enforce TARGET
+CFLAGS="-I../../../../local/include/" LDFLAGS="-L../../../../local/lib/" make ECM=1 NO_ZLIB=1 msieveshared
+popd

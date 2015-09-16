@@ -6,7 +6,7 @@ VERSION=2.1
 TARGET=x86_64-w64-mingw32
 
 BUILDDIR=src/primecount/$VERSION/$TARGET
-INSTALLDIR=$PWD/local/
+INSTALLDIR=$PWD/local
 OUTPUTDIR=lib/primecount/$VERSION/$TARGET
 
 rm -rf $BUILDDIR
@@ -21,6 +21,7 @@ git -C $BUILDDIR checkout v$VERSION
 
 pushd $BUILDDIR
 ./autogen.sh --host=$TARGET
+# CXXFLAGS="-static -static-libgcc -static-libstdc++" CPPFLAGS="-I../../../../local/include/" LDFLAGS="-L../../../../local/lib/" ./configure --host=$TARGET --prefix=$INSTALLDIR
 CPPFLAGS="-I../../../../local/include/" LDFLAGS="-L../../../../local/lib/" ./configure --host=$TARGET --prefix=$INSTALLDIR
 make
 make install

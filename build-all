@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+rm -rf lib
+rm -rf local
+rm -rf src
+
+./build-gmp
+./build-gmpecm
+# WIP: ./build-msieve-shared
+
+./build-primesieve
+./build-primecount
+./build-cprimecount
