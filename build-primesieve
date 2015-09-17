@@ -3,18 +3,10 @@
 set -e
 
 VERSION=5.4.2
-TARGET=x86_64-w64-mingw32
 
-BUILDDIR=src/primesieve/$VERSION/$TARGET
-INSTALLDIR=$PWD/local
-OUTPUTDIR=lib/primesieve/$VERSION/$TARGET
-
+BUILDDIR=build/primesieve/$VERSION/$TARGET
 rm -rf $BUILDDIR
-rm -rf $OUTPUTDIR
-
 mkdir -p $BUILDDIR
-mkdir -p $INSTALLDIR
-mkdir -p $OUTPUTDIR
 
 git clone cache/primesieve $BUILDDIR
 git -C $BUILDDIR checkout v$VERSION
@@ -27,7 +19,7 @@ make
 make install
 popd
 
-cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR
+cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR || cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_sjlj-1.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libstdc++-6.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR

@@ -3,18 +3,10 @@
 set -e
 
 VERSION=6.4.4
-TARGET=x86_64-w64-mingw32
 
-BUILDDIR=src/gmpecm/$VERSION/$TARGET
-INSTALLDIR=$PWD/local
-OUTPUTDIR=lib/gmpecm/$VERSION/$TARGET
-
+BUILDDIR=build/gmpecm/$VERSION/$TARGET
 rm -rf $BUILDDIR
-rm -rf $OUTPUTDIR
-
 mkdir -p $BUILDDIR
-mkdir -p $INSTALLDIR
-mkdir -p $OUTPUTDIR
 
 tar xzf cache/ecm-$VERSION.tar.gz -C $BUILDDIR --strip-components=1
 
@@ -24,7 +16,7 @@ make
 make install
 popd
 
-cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR
+cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR || cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_sjlj-1.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/libgmp-10.dll $OUTPUTDIR

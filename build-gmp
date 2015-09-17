@@ -3,18 +3,10 @@
 set -e
 
 VERSION=6.0.0
-TARGET=x86_64-w64-mingw32
 
-BUILDDIR=src/gmp/$VERSION/$TARGET
-INSTALLDIR=$PWD/local
-OUTPUTDIR=lib/gmp/$VERSION/$TARGET
-
+BUILDDIR=build/gmp/$VERSION/$TARGET
 rm -rf $BUILDDIR
-rm -rf $OUTPUTDIR
-
 mkdir -p $BUILDDIR
-mkdir -p $INSTALLDIR
-mkdir -p $OUTPUTDIR
 
 tar xjf cache/gmp-$VERSION.tar.bz2 -C $BUILDDIR --strip-components=1
 

@@ -2,9 +2,17 @@
 
 set -e
 
-rm -rf lib
-rm -rf local
-rm -rf src
+export TARGET=x86_64-w64-mingw32
+export CFLAGS="-march=k8-sse3 -mtune=k8-sse3"
+export CXXFLAGS="-march=k8-sse3 -mtune=k8-sse3"
+
+export INSTALLDIR=$PWD/local
+rm -rf $INSTALLDIR
+mkdir -p $INSTALLDIR
+
+export OUTPUTDIR=$PWD/$TARGET/usr/lib
+rm -rf $PWD/$TARGET
+mkdir -p $OUTPUTDIR
 
 ./build-gmp
 ./build-gmpecm
@@ -13,3 +21,36 @@ rm -rf src
 ./build-primesieve
 ./build-primecount
 ./build-cprimecount
+
+pushd $TARGET
+tar czf primesieve_deps_win64_k8-sse3_$(date +%Y%m%d%H%M%S).tar.gz usr/
+popd
+
+
+export TARGET=i686-w64-mingw32
+export CFLAGS="-march=pentium4 -mtune=pentium4"
+export CXXFLAGS="-march=pentium4 -mtune=pentium4"
+
+export INSTALLDIR=$PWD/local
+rm -rf $INSTALLDIR
+mkdir -p $INSTALLDIR
+
+export OUTPUTDIR=$PWD/$TARGET/usr/lib
+rm -rf $PWD/$TARGET
+mkdir -p $OUTPUTDIR
+
+./build-gmp
+# compiler error: ./build-gmpecm
+# depends on ecm: ./build-msieve-shared
+
+./build-primesieve
+./build-primecount
+./build-cprimecount
+
+pushd $TARGET
+tar czf primesieve_deps_win32_p4_$(date +%Y%m%d%H%M%S).tar.gz usr/
+popd
+
+
+rm -rf build
+rm -rf $INSTALLDIR
