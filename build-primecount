@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=2.1
+VERSION=2.2
 
 BUILDDIR=build/primecount/$VERSION/$TARGET
 rm -rf $BUILDDIR
@@ -23,6 +23,6 @@ cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR || cp /usr/lib/g
 cp /usr/lib/gcc/$TARGET/4.9-win32/libstdc++-6.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
-cp $INSTALLDIR/bin/libprimecount-1.dll $OUTPUTDIR
+cp $INSTALLDIR/bin/libprimecount-3.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/libprimesieve-4.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/primecount.exe $OUTPUTDIR

@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=6.0.0
+VERSION=6.0.0a
 
 BUILDDIR=build/gmp/$VERSION/$TARGET
 rm -rf $BUILDDIR
