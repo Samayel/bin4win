@@ -40,8 +40,8 @@ rm -rf $PWD/$TARGET
 mkdir -p $OUTPUTDIR
 
 ./build-gmp
-# compiler error: ./build-gmpecm
-# depends on ecm: ./build-msieve-shared
+./build-gmpecm
+./build-msieve-shared
 
 ./build-primesieve
 ./build-primecount
