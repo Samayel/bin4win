@@ -11,7 +11,7 @@ rm -rf $INSTALLDIR
 mkdir -p $INSTALLDIR
 
 export OUTPUTDIR=$PWD/$TARGET/usr/lib
-rm -rf $PWD/$TARGET
+rm -rf $OUTPUTDIR
 mkdir -p $OUTPUTDIR
 
 ./build-gmp
@@ -36,7 +36,7 @@ rm -rf $INSTALLDIR
 mkdir -p $INSTALLDIR
 
 export OUTPUTDIR=$PWD/$TARGET/usr/lib
-rm -rf $PWD/$TARGET
+rm -rf $OUTPUTDIR
 mkdir -p $OUTPUTDIR
 
 ./build-gmp
