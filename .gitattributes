@@ -1,2 +1,4 @@
 primesieve_deps_win32_*.tar.gz filter=lfs diff=lfs merge=lfs -text
 primesieve_deps_win64_*.tar.gz filter=lfs diff=lfs merge=lfs -text
+nemo_deps_win32_*.tar.gz filter=lfs diff=lfs merge=lfs -text
+nemo_deps_win64_*.tar.gz filter=lfs diff=lfs merge=lfs -text
