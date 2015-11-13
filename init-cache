@@ -5,11 +5,18 @@ CACHEDIR=cache
 rm -rf $CACHEDIR
 mkdir $CACHEDIR
 
-wget -O $CACHEDIR/gmp-6.0.0a.tar.bz2  https://gmplib.org/download/gmp/gmp-6.0.0a.tar.bz2
-wget -O $CACHEDIR/ecm-6.4.4.tar.gz    https://gforge.inria.fr/frs/download.php/file/32159/ecm-6.4.4.tar.gz
+wget -O $CACHEDIR/gmp-6.1.0.tar.bz2    https://gmplib.org/download/gmp/gmp-6.1.0.tar.bz2
+wget -O $CACHEDIR/mpfr-3.1.3.tar.bz2   https://ftp.gnu.org/gnu/mpfr/mpfr-3.1.3.tar.bz2
+wget -O $CACHEDIR/ecm-6.4.4.tar.gz     https://gforge.inria.fr/frs/download.php/file/32159/ecm-6.4.4.tar.gz
 
-git clone https://github.com/jlapeyre/msieve-shared.git $CACHEDIR/msieve-shared
-git clone https://github.com/Samayel/PrimeSieve.jl.git $CACHEDIR/PrimeSieve.jl
+git clone https://github.com/jlapeyre/msieve-shared.git   $CACHEDIR/msieve-shared
+git clone https://github.com/Samayel/PrimeSieve.jl.git    $CACHEDIR/PrimeSieve.jl
 
-git clone https://github.com/kimwalisch/primesieve.git $CACHEDIR/primesieve
-git clone https://github.com/kimwalisch/primecount.git $CACHEDIR/primecount
+git clone https://github.com/kimwalisch/primesieve.git    $CACHEDIR/primesieve
+git clone https://github.com/kimwalisch/primecount.git    $CACHEDIR/primecount
+
+git clone https://github.com/wbhart/flint2.git            $CACHEDIR/flint
+git clone https://github.com/wbhart/antic.git             $CACHEDIR/antic
+git clone https://github.com/fredrik-johansson/arb.git    $CACHEDIR/arb
+
+git clone http://pari.math.u-bordeaux.fr/git/pari.git     $CACHEDIR/pari

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+VERSION=master
+
+BUILDDIR=build/arb/$VERSION/$TARGET
+rm -rf $BUILDDIR
+mkdir -p $BUILDDIR
+
+git clone cache/arb $BUILDDIR
+git -C $BUILDDIR checkout $VERSION
+
+if [ $TARGET = "x86_64-w64-mingw32" ]; then
+   BUILD="x86_64-MINGW64"
+else
+   BUILD="i686-MINGW32"
+fi
+
+pushd $BUILDDIR
+./configure CC="$TARGET-gcc" CXX="$TARGET-g++" AR="$TARGET-ar" --build=$BUILD --prefix=$INSTALLDIR --disable-static --enable-shared --with-gmp=$INSTALLDIR --with-mpfr=$INSTALLDIR --with-flint=$INSTALLDIR
+make -j4
+make install
+popd
+
+cp $INSTALLDIR/lib/libarb.dll $OUTPUTDIR

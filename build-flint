@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+VERSION=trunk
+
+ANTICDIR=build/antic/$VERSION/$TARGET
+rm -rf $ANTICDIR
+mkdir -p $ANTICDIR
+
+git clone cache/antic $ANTICDIR
+git -C $ANTICDIR checkout $VERSION
+
+BUILDDIR=build/flint/$VERSION/$TARGET
+rm -rf $BUILDDIR
+mkdir -p $BUILDDIR
+
+git clone cache/flint $BUILDDIR
+git -C $BUILDDIR checkout $VERSION
+
+if [ $TARGET = "x86_64-w64-mingw32" ]; then
+   BUILD="x86_64-MINGW64"
+else
+   BUILD="i686-MINGW32"
+fi
+
+pushd $BUILDDIR
+./configure CC="$TARGET-gcc" CXX="$TARGET-g++" AR="$TARGET-ar" --build=$BUILD --prefix=$INSTALLDIR --extensions=../../../../$ANTICDIR --disable-static --enable-shared --with-gmp=$INSTALLDIR --with-mpfr=$INSTALLDIR
+make -j4
+make install
+popd
+
+cp $INSTALLDIR/lib/libflint-13.dll $OUTPUTDIR
+cp $INSTALLDIR/lib/libflint-13.dll $OUTPUTDIR/libflint.dll

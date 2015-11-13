@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+VERSION=3.1.3
+
+BUILDDIR=build/mpfr/$VERSION/$TARGET
+rm -rf $BUILDDIR
+mkdir -p $BUILDDIR
+
+tar xjf cache/mpfr-$VERSION.tar.bz2 -C $BUILDDIR --strip-components=1
+
+pushd $BUILDDIR
+./configure --host=$TARGET --prefix=$INSTALLDIR --with-gmp=$INSTALLDIR --disable-static --enable-shared
+make -j4
+make install
+popd
+
+cp $INSTALLDIR/bin/libmpfr-4.dll $OUTPUTDIR

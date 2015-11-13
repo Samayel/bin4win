@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set -e
+
+export TARGET=x86_64-w64-mingw32
+export CFLAGS="-march=k8-sse3 -mtune=k8-sse3"
+export CXXFLAGS="-march=k8-sse3 -mtune=k8-sse3"
+
+export INSTALLDIR=$PWD/local
+rm -rf $INSTALLDIR
+mkdir -p $INSTALLDIR
+
+export OUTPUTDIR=$PWD/$TARGET/nemo-deps
+rm -rf $OUTPUTDIR
+export OUTPUTDIR=$OUTPUTDIR/usr/lib
+mkdir -p $OUTPUTDIR
+
+./build-gmp
+./build-mpfr
+./build-flint
+./build-arb
+./build-pari
+
+pushd $OUTPUTDIR/../..
+tar czf ../nemo_deps_win64_k8-sse3_$(date +%Y%m%d%H%M%S).tar.gz usr/
+popd
+
+
+export TARGET=i686-w64-mingw32
+export CFLAGS="-march=pentium4 -mtune=pentium4"
+export CXXFLAGS="-march=pentium4 -mtune=pentium4"
+
+export INSTALLDIR=$PWD/local
+rm -rf $INSTALLDIR
+mkdir -p $INSTALLDIR
+
+export OUTPUTDIR=$PWD/$TARGET/nemo-deps
+rm -rf $OUTPUTDIR
+export OUTPUTDIR=$OUTPUTDIR/usr/lib
+mkdir -p $OUTPUTDIR
+
+./build-gmp
+./build-mpfr
+./build-flint
+./build-arb
+./build-pari
+
+pushd $OUTPUTDIR/../..
+tar czf ../nemo_deps_win32_p4_$(date +%Y%m%d%H%M%S).tar.gz usr/
+popd
+
+
+rm -rf build
+rm -rf $INSTALLDIR

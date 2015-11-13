@@ -10,8 +10,9 @@ export INSTALLDIR=$PWD/local
 rm -rf $INSTALLDIR
 mkdir -p $INSTALLDIR
 
-export OUTPUTDIR=$PWD/$TARGET/usr/lib
+export OUTPUTDIR=$PWD/$TARGET/primesieve-deps
 rm -rf $OUTPUTDIR
+export OUTPUTDIR=$OUTPUTDIR/usr/lib
 mkdir -p $OUTPUTDIR
 
 ./build-gmp
@@ -22,8 +23,8 @@ mkdir -p $OUTPUTDIR
 ./build-primecount
 ./build-cprimecount
 
-pushd $TARGET
-tar czf primesieve_deps_win64_k8-sse3_$(date +%Y%m%d%H%M%S).tar.gz usr/
+pushd $OUTPUTDIR/../..
+tar czf ../primesieve_deps_win64_k8-sse3_$(date +%Y%m%d%H%M%S).tar.gz usr/
 popd
 
 
@@ -35,8 +36,9 @@ export INSTALLDIR=$PWD/local
 rm -rf $INSTALLDIR
 mkdir -p $INSTALLDIR
 
-export OUTPUTDIR=$PWD/$TARGET/usr/lib
+export OUTPUTDIR=$PWD/$TARGET/primesieve-deps
 rm -rf $OUTPUTDIR
+export OUTPUTDIR=$OUTPUTDIR/usr/lib
 mkdir -p $OUTPUTDIR
 
 ./build-gmp
@@ -47,8 +49,8 @@ mkdir -p $OUTPUTDIR
 ./build-primecount
 ./build-cprimecount
 
-pushd $TARGET
-tar czf primesieve_deps_win32_p4_$(date +%Y%m%d%H%M%S).tar.gz usr/
+pushd $OUTPUTDIR/../..
+tar czf ../primesieve_deps_win32_p4_$(date +%Y%m%d%H%M%S).tar.gz usr/
 popd
 
 

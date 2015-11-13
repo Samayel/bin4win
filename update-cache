@@ -4,5 +4,12 @@ CACHEDIR=cache
 
 git -C $CACHEDIR/msieve-shared pull
 git -C $CACHEDIR/PrimeSieve.jl pull
+
 git -C $CACHEDIR/primesieve pull
 git -C $CACHEDIR/primecount pull
+
+git -C $CACHEDIR/flint pull
+git -C $CACHEDIR/antic pull
+git -C $CACHEDIR/arb pull
+
+git -C $CACHEDIR/pari pull

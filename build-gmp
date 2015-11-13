@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=6.0.0a
+VERSION=6.1.0
 
 BUILDDIR=build/gmp/$VERSION/$TARGET
 rm -rf $BUILDDIR
@@ -12,7 +12,7 @@ tar xjf cache/gmp-$VERSION.tar.bz2 -C $BUILDDIR --strip-components=1
 
 pushd $BUILDDIR
 ./configure --host=$TARGET --prefix=$INSTALLDIR --disable-static --enable-shared
-make
+make -j4
 make install
 popd
 
