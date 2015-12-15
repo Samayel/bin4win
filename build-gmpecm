@@ -9,6 +9,7 @@ rm -rf $BUILDDIR
 mkdir -p $BUILDDIR
 
 tar xzf cache/ecm-$VERSION.tar.gz -C $BUILDDIR --strip-components=1
+patch $BUILDDIR/configure patch/gmpecm/$VERSION/$TARGET/configure.patch
 
 pushd $BUILDDIR
 ./configure --host=$TARGET --prefix=$INSTALLDIR --with-gmp=$INSTALLDIR --disable-static --enable-shared --enable-openmp

@@ -1,0 +1,95 @@
+--- configure	2013-02-27 10:55:02.000000000 +0100
++++ configure-patched	2015-12-15 13:31:55.766671386 +0100
+@@ -14167,49 +14167,49 @@
+ rm -f core conftest.err conftest.$ac_objext \
+     conftest$ac_exeext conftest.$ac_ext
+ 
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if gmp.h version and libgmp version are the same" >&5
+-$as_echo_n "checking if gmp.h version and libgmp version are the same... " >&6; }
+-if test "$cross_compiling" = yes; then :
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: cross-compiling: cannot test" >&5
+-$as_echo "cross-compiling: cannot test" >&6; }
+-
+-else
+-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-#include <stdio.h>
+-#include <string.h>
+-#include <gmp.h>
+-
+-int
+-main ()
+-{
+-
+-char buffer[100];
+-if (__GNU_MP_VERSION == 4 && __GNU_MP_VERSION_MINOR <= 2 &&
+-    __GNU_MP_VERSION_PATCHLEVEL == 0)
+-  sprintf (buffer, "%d.%d", __GNU_MP_VERSION, __GNU_MP_VERSION_MINOR);
+-else
+-  sprintf (buffer, "%d.%d.%d", __GNU_MP_VERSION, __GNU_MP_VERSION_MINOR,
+-   __GNU_MP_VERSION_PATCHLEVEL);
+-printf ("(%s/%s) ", buffer, gmp_version);
+-return strcmp (buffer, gmp_version);
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_run "$LINENO"; then :
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+-$as_echo "yes" >&6; }
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-    as_fn_error $? "'gmp.h' and 'libgmp' have different versions, you have to reinstall GMP properly." "$LINENO" 5
+-fi
+-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext \
+-  conftest.$ac_objext conftest.beam conftest.$ac_ext
+-fi
++#{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if gmp.h version and libgmp version are the same" >&5
++#$as_echo_n "checking if gmp.h version and libgmp version are the same... " >&6; }
++#if test "$cross_compiling" = yes; then :
++#  { $as_echo "$as_me:${as_lineno-$LINENO}: result: cross-compiling: cannot test" >&5
++#$as_echo "cross-compiling: cannot test" >&6; }
++#
++#else
++#  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++#/* end confdefs.h.  */
++#
++##include <stdio.h>
++##include <string.h>
++##include <gmp.h>
++#
++#int
++#main ()
++#{
++#
++#char buffer[100];
++#if (__GNU_MP_VERSION == 4 && __GNU_MP_VERSION_MINOR <= 2 &&
++#    __GNU_MP_VERSION_PATCHLEVEL == 0)
++#  sprintf (buffer, "%d.%d", __GNU_MP_VERSION, __GNU_MP_VERSION_MINOR);
++#else
++#  sprintf (buffer, "%d.%d.%d", __GNU_MP_VERSION, __GNU_MP_VERSION_MINOR,
++#   __GNU_MP_VERSION_PATCHLEVEL);
++#printf ("(%s/%s) ", buffer, gmp_version);
++#return strcmp (buffer, gmp_version);
++#
++#  ;
++#  return 0;
++#}
++#_ACEOF
++#if ac_fn_c_try_run "$LINENO"; then :
++#  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++#$as_echo "yes" >&6; }
++#else
++#  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++#$as_echo "no" >&6; }
++#    as_fn_error $? "'gmp.h' and 'libgmp' have different versions, you have to reinstall GMP properly." "$LINENO" 5
++#fi
++#rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext \
++#  conftest.$ac_objext conftest.beam conftest.$ac_ext
++#fi
+ 
+ 
+ for ac_func in __gmpn_add_nc __gmpn_mod_34lsub1 __gmpn_redc_1 __gmpn_redc_2

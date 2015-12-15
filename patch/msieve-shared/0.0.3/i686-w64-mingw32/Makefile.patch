@@ -1,0 +1,70 @@
+--- Makefile	2015-11-13 23:10:11.000000000 +0100
++++ Makefile-patched	2015-09-19 20:30:49.086168974 +0200
+@@ -17,10 +17,12 @@
+ 
+ # gcc with basic optimization (-march flag could
+ # get overridden by architecture-specific builds)
+-CC = gcc
++CC = $(TARGET)-gcc
++AR = $(TARGET)-ar
++RANLIB = $(TARGET)-ranlib
++
+ WARN_FLAGS = -Wall -W
+-OPT_FLAGS = -O3 -fomit-frame-pointer -fPIC -march=native \
+-	    -D_FILE_OFFSET_BITS=64 -DNDEBUG -D_LARGEFILE64_SOURCE
++OPT_FLAGS = -O3 -fomit-frame-pointer
+ 
+ # use := instead of = so we only run the following once
+ SVN_VERSION := $(shell svnversion .)
+@@ -30,22 +32,23 @@
+ 
+ # May need to include -I flag  if using libecm
+ #-I/home/jlapeyre/software_source/factoring/gmp-ecm/ecm-6.4.4
+-CFLAGS = $(OPT_FLAGS) $(MACHINE_FLAGS) $(WARN_FLAGS) \
++CFLAGS += $(OPT_FLAGS) $(MACHINE_FLAGS) $(WARN_FLAGS) \
+ 	 	-DMSIEVE_SVN_VERSION="\"$(SVN_VERSION)\"" \
+-		-I. -Iinclude -Ignfs -Ignfs/poly -Ignfs/poly/stage1
++		-I. -Iinclude -Ignfs -Ignfs/poly -Ignfs/poly/stage1 \
++		-I../../../../local/include/
+ 
+ 
+ # tweak the compile flags
+ 
+ ifeq ($(ECM),1)
+ 	CFLAGS += -DHAVE_GMP_ECM
+-	LIBS += -lecm  # Need to tell where to find libecm
+-#	LIBS += -L /home/jlapeyre/software_source/factoring/gmp-ecm/ecm-6.4.4/.libs  -lecm
++#	LIBS += -lecm  # Need to tell where to find libecm
++	LIBS += -L../../../../local/lib/ -lecm -fopenmp
+ endif
+ ifeq ($(WIN),1)
+ 	LDFLAGS += -Wl,--large-address-aware
+ else
+-	LIBS += -ldl
++#	LIBS += -ldl
+ endif
+ ifeq ($(CUDA),1)
+ 
+@@ -266,15 +269,16 @@
+ 
+ all: $(COMMON_OBJS) $(QS_OBJS) $(NFS_OBJS) $(GPU_OBJS)
+ 	rm -f libmsieve.a
+-	ar r libmsieve.a $(COMMON_OBJS) $(QS_OBJS) $(NFS_OBJS)
+-	ranlib libmsieve.a
+-	$(CC) $(CFLAGS) demo.c -o msieve $(LDFLAGS) \
+-			libmsieve.a $(LIBS)
++	$(AR) r libmsieve.a $(COMMON_OBJS) $(QS_OBJS) $(NFS_OBJS)
++	$(RANLIB) libmsieve.a
++	$(CC) $(CFLAGS) -mwindows demo.c -o msieve.exe $(LDFLAGS) libmsieve.a $(LIBS)
+ 
+-SLIB = libsmsieve.so
++SLIB = libsmsieve.dll
+ 
+ msieveshared: all $(COMMON_OBJS) $(QS_OBJS) $(NFS_OBJS) $(GPU_OBJS) msieveshared.o
+-	$(CC) $(CFLAGS) -shared -Wl,-soname,$(SLIB) -o $(SLIB) msieveshared.o $(LDFLAGS) \
++#	$(CC) $(CFLAGS) -shared -Wl,-soname,$(SLIB) -o $(SLIB) msieveshared.o $(LDFLAGS) \
++#			libmsieve.a $(LIBS)
++	$(CC) $(CFLAGS) -mwindows -shared -o $(SLIB) msieveshared.o $(LDFLAGS) \
+ 			libmsieve.a $(LIBS)
+ 
+ clean:

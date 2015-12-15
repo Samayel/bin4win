@@ -24,5 +24,5 @@ cp /usr/lib/gcc/$TARGET/4.9-win32/libstdc++-6.dll $OUTPUTDIR
 cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/libprimecount-3.dll $OUTPUTDIR
-cp $INSTALLDIR/bin/libprimesieve-5.dll $OUTPUTDIR
+cp $INSTALLDIR/bin/libprimesieve-6.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/primecount.exe $OUTPUTDIR

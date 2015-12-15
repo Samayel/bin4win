@@ -10,7 +10,7 @@ mkdir -p $BUILDDIR
 
 git clone cache/msieve-shared $BUILDDIR
 git -C $BUILDDIR checkout v$VERSION
-cp patch/msieve-shared/$VERSION/$TARGET/Makefile $BUILDDIR
+patch $BUILDDIR/Makefile patch/msieve-shared/$VERSION/$TARGET/Makefile.patch
 cp cache/PrimeSieve.jl/deps/src/localmsieve/msieveshared.c $BUILDDIR
 
 pushd $BUILDDIR
