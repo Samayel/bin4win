@@ -5,7 +5,7 @@ set -e
 VERSION=6.4.4
 
 BUILDDIR=build/gmpecm/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 tar xzf cache/ecm-$VERSION.tar.gz -C $BUILDDIR --strip-components=1

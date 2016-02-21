@@ -5,7 +5,7 @@ set -e
 VERSION=master
 
 BUILDDIR=build/arb/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 git clone cache/arb $BUILDDIR

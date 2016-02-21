@@ -5,14 +5,14 @@ set -e
 VERSION=trunk
 
 ANTICDIR=build/antic/$VERSION/$TARGET
-rm -rf $ANTICDIR
+rm -rf ${ANTICDIR:?}
 mkdir -p $ANTICDIR
 
 git clone cache/antic $ANTICDIR
 git -C $ANTICDIR checkout $VERSION
 
 BUILDDIR=build/flint/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 git clone cache/flint $BUILDDIR

@@ -5,7 +5,7 @@ set -e
 VERSION=5.6.0
 
 BUILDDIR=build/primesieve/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 git clone cache/primesieve $BUILDDIR

@@ -5,7 +5,7 @@ set -e
 VERSION=2.4
 
 BUILDDIR=build/primecount/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 git clone cache/primecount $BUILDDIR

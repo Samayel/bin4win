@@ -7,11 +7,11 @@ export CFLAGS="-march=k8-sse3 -mtune=k8-sse3"
 export CXXFLAGS="-march=k8-sse3 -mtune=k8-sse3"
 
 export INSTALLDIR=$PWD/local
-rm -rf $INSTALLDIR
+rm -rf ${INSTALLDIR:?}
 mkdir -p $INSTALLDIR
 
 export OUTPUTDIR=$PWD/$TARGET/nemo-deps
-rm -rf $OUTPUTDIR
+rm -rf ${OUTPUTDIR:?}
 export OUTPUTDIR=$OUTPUTDIR/usr/lib
 mkdir -p $OUTPUTDIR
 
@@ -31,11 +31,11 @@ export CFLAGS="-march=pentium4 -mtune=pentium4"
 export CXXFLAGS="-march=pentium4 -mtune=pentium4"
 
 export INSTALLDIR=$PWD/local
-rm -rf $INSTALLDIR
+rm -rf ${INSTALLDIR:?}
 mkdir -p $INSTALLDIR
 
 export OUTPUTDIR=$PWD/$TARGET/nemo-deps
-rm -rf $OUTPUTDIR
+rm -rf ${OUTPUTDIR:?}
 export OUTPUTDIR=$OUTPUTDIR/usr/lib
 mkdir -p $OUTPUTDIR
 
@@ -51,4 +51,4 @@ popd
 
 
 rm -rf build
-rm -rf $INSTALLDIR
+rm -rf ${INSTALLDIR:?}

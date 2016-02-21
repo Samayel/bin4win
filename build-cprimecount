@@ -5,7 +5,7 @@ set -e
 VERSION=master
 
 BUILDDIR=build/cprimecount/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 cp -r cache/PrimeSieve.jl/deps/src/cprimecount/* $BUILDDIR

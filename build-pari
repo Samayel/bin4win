@@ -5,7 +5,7 @@ set -e
 VERSION=2.7.5
 
 BUILDDIR=build/pari/$VERSION/$TARGET
-rm -rf $BUILDDIR
+rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 git clone cache/pari $BUILDDIR
