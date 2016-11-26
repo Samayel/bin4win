@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=2.7.5
+VERSION=2.9.0
 
 BUILDDIR=build/pari/$VERSION/$TARGET
 rm -rf ${BUILDDIR:?}

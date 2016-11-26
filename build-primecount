@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=2.4
+VERSION=3.4
 
 BUILDDIR=build/primecount/$VERSION/$TARGET
 rm -rf ${BUILDDIR:?}

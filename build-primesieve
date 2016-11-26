@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=5.6.0
+VERSION=5.7.3
 
 BUILDDIR=build/primesieve/$VERSION/$TARGET
 rm -rf ${BUILDDIR:?}

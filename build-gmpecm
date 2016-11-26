@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=6.4.4
+VERSION=7.0.4
 
 BUILDDIR=build/gmpecm/$VERSION/$TARGET
 rm -rf ${BUILDDIR:?}
