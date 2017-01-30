@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -e
 
 CACHEDIR=cache
 
 rm -rf ${CACHEDIR:?}
 mkdir $CACHEDIR
 
-wget -O $CACHEDIR/gmp-6.1.1.tar.bz2    https://gmplib.org/download/gmp/gmp-6.1.1.tar.bz2
+wget -O $CACHEDIR/gmp-6.1.2.tar.bz2    https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2
 wget -O $CACHEDIR/mpfr-3.1.5.tar.bz2   https://ftp.gnu.org/gnu/mpfr/mpfr-3.1.5.tar.bz2
 wget -O $CACHEDIR/ecm-7.0.4.tar.gz     https://gforge.inria.fr/frs/download.php/file/32159/ecm-7.0.4.tar.gz
 

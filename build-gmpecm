@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -9,7 +9,7 @@ rm -rf ${BUILDDIR:?}
 mkdir -p $BUILDDIR
 
 tar xzf cache/ecm-$VERSION.tar.gz -C $BUILDDIR --strip-components=1
-patch $BUILDDIR/configure patch/gmpecm/$VERSION/$TARGET/configure.patch
+# patch $BUILDDIR/configure patch/gmpecm/$VERSION/$TARGET/configure.patch
 
 pushd $BUILDDIR
 ./configure --host=$TARGET --prefix=$INSTALLDIR --with-gmp=$INSTALLDIR --disable-static --enable-shared --enable-openmp
@@ -17,8 +17,8 @@ make
 make install
 popd
 
-cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_seh-1.dll $OUTPUTDIR || cp /usr/lib/gcc/$TARGET/4.9-win32/libgcc_s_sjlj-1.dll $OUTPUTDIR
-cp /usr/lib/gcc/$TARGET/4.9-win32/libgomp-1.dll $OUTPUTDIR
+cp /usr/lib/gcc/$TARGET/6.2-win32/libgcc_s_seh-1.dll $OUTPUTDIR || cp /usr/lib/gcc/$TARGET/6.2-win32/libgcc_s_sjlj-1.dll $OUTPUTDIR
+cp /usr/lib/gcc/$TARGET/6.2-win32/libgomp-1.dll $OUTPUTDIR
 cp /usr/$TARGET/lib/libwinpthread-1.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/libgmp-10.dll $OUTPUTDIR
 cp $INSTALLDIR/bin/ecm.exe $OUTPUTDIR

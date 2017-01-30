@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
-VERSION=6.1.1
+VERSION=6.1.2
 
 BUILDDIR=build/gmp/$VERSION/$TARGET
 rm -rf ${BUILDDIR:?}
