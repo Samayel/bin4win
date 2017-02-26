@@ -20,5 +20,3 @@ git clone https://github.com/kimwalisch/primecount.git    $CACHEDIR/primecount
 git clone https://github.com/wbhart/flint2.git            $CACHEDIR/flint
 git clone https://github.com/wbhart/antic.git             $CACHEDIR/antic
 git clone https://github.com/fredrik-johansson/arb.git    $CACHEDIR/arb
-
-git clone http://pari.math.u-bordeaux.fr/git/pari.git     $CACHEDIR/pari

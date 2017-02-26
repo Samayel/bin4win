@@ -19,7 +19,6 @@ mkdir -p $OUTPUTDIR
 ./build-mpfr
 ./build-flint
 ./build-arb
-./build-pari
 
 pushd $OUTPUTDIR/../..
 tar czf ../nemo_deps_win64_k8-sse3_$(date +%Y%m%d%H%M%S).tar.gz usr/
@@ -43,7 +42,6 @@ mkdir -p $OUTPUTDIR
 ./build-mpfr
 ./build-flint
 ./build-arb
-./build-pari
 
 pushd $OUTPUTDIR/../..
 tar czf ../nemo_deps_win32_p4_$(date +%Y%m%d%H%M%S).tar.gz usr/

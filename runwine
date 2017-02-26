@@ -1,4 +1,0 @@
-#/bin/sh
-PROG="./$1"
-shift
-wine $PROG "$@" 2>&1 | sed 's/[\r]//'

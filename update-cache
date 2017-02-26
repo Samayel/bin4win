@@ -13,5 +13,3 @@ git -C $CACHEDIR/primecount pull
 git -C $CACHEDIR/flint pull
 git -C $CACHEDIR/antic pull
 git -C $CACHEDIR/arb pull
-
-git -C $CACHEDIR/pari pull
